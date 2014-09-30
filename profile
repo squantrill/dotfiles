@@ -20,3 +20,7 @@ fi
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
+
+alias gt_ood='ssh -t quantrill@192.168.150.30 screen -arR'
+alias mt_ood='sshfs quantrill@192.168.150.30:/home/quantrill /Users/quantrill/ood_home'
+alias gt_quantrill='ssh -t simon@svn.quantrill.eu screen -arR'
