@@ -1,0 +1,395 @@
+servers = (
+  { address = "irc.stealth.net"; chatnet = "IRCnet"; port = "6668"; },
+  {
+    address = "irc.undernet.org";
+    chatnet = "Undernet";
+    port = "6667";
+  },
+  { address = "irc.dal.net"; chatnet = "DALnet"; port = "6667"; },
+  {
+    address = "irc.quakenet.org";
+    chatnet = "QuakeNet";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  },
+  { address = "silc.silcnet.org"; chatnet = "SILC"; port = "706"; },
+  {
+    address = "irc.freenode.net";
+    chatnet = "FreeNode";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  },
+  {
+    address = "62.177.253.232";
+    chatnet = "ArgossNet";
+    port = "7000";
+    password = "@@argoss12$!";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  },
+  {
+    address = "irc.blinkenshell.org";
+    chatnet = "BlinkenIRC";
+    port = "6697";
+    use_ssl = "yes";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  },
+  {
+    address = "efnet.xs4all.nl";
+    chatnet = "EFNet";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  },
+  {
+    address = "irc.underworld.no";
+    chatnet = "EFNet";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+  },
+  {
+    address = "irc.carnique.nl";
+    chatnet = "CNQnet";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  }
+);
+
+chatnets = {
+  ArgossNet = {
+    type = "IRC";
+    max_kicks = "4";
+    max_msgs = "5";
+    max_whois = "4";
+    max_query_chans = "5";
+  };
+  FreeNode = {
+    type = "IRC";
+    nick = "simon_q";
+    username = "simon";
+    realname = "Simon";
+    max_query_chans = "5";
+    max_kicks = "4";
+    max_msgs = "5";
+    max_modes = "4";
+    max_whois = "4";
+  };
+  IRCnet = {
+    type = "IRC";
+    max_kicks = "4";
+    max_msgs = "5";
+    max_whois = "4";
+    max_query_chans = "5";
+  };
+  EFNet = {
+    type = "IRC";
+    nick = "simon_q";
+    username = "simon";
+    realname = "Simon";
+    max_kicks = "4";
+    max_msgs = "3";
+    max_modes = "4";
+    max_whois = "1";
+  };
+  Undernet = {
+    type = "IRC";
+    max_kicks = "1";
+    max_msgs = "3";
+    max_whois = "30";
+  };
+  DALnet = {
+    type = "IRC";
+    max_kicks = "4";
+    max_msgs = "3";
+    max_whois = "30";
+  };
+  QuakeNet = {
+    type = "IRC";
+    nick = "simon_q";
+    username = "simon";
+    realname = "Simon";
+    max_kicks = "1";
+    max_msgs = "3";
+    max_modes = "4";
+    max_whois = "30";
+  };
+  SILC = { type = "SILC"; };
+  BlinkenIRC = {
+    type = "IRC";
+    autosendcmd = "/^msg nickserv identify nomoretears2;wait 2000";
+  };
+  CNQnet = {
+    type = "IRC";
+    nick = "simon_q";
+    username = "simon";
+    realname = "Simon";
+    max_modes = "4";
+  };
+};
+
+channels = (
+  { name = "#irssi"; chatnet = "ircnet"; autojoin = "No"; },
+  { name = "silc"; chatnet = "silc"; autojoin = "No"; },
+  { name = "#linuxjournal"; chatnet = "FreeNode"; autojoin = "yes"; },
+  { name = "#agstaff"; chatnet = "ArgossNet"; autojoin = "yes"; },
+  { name = "#matlab"; chatnet = "FreeNode"; autojoin = "yes"; },
+  { name = "#irssitest"; chatnet = "EFnet"; autojoin = "yes"; },
+  { name = "#carnique"; chatnet = "CNQnet"; autojoin = "yes"; },
+  { name = "#debian"; chatnet = "FreeNode"; autojoin = "yes"; },
+  { name = "#security"; chatnet = "FreeNode"; autojoin = "yes"; }
+);
+
+aliases = {
+  J = "join";
+  WJOIN = "join -window";
+  WQUERY = "query -window";
+  LEAVE = "part";
+  BYE = "quit";
+  EXIT = "quit";
+  SIGNOFF = "quit";
+  DESCRIBE = "action";
+  DATE = "time";
+  HOST = "userhost";
+  LAST = "lastlog";
+  SAY = "msg *";
+  WI = "whois";
+  WII = "whois $0 $0";
+  WW = "whowas";
+  W = "who";
+  N = "names";
+  M = "msg";
+  T = "topic";
+  C = "clear";
+  CL = "clear";
+  K = "kick";
+  KB = "kickban";
+  KN = "knockout";
+  BANS = "ban";
+  B = "ban";
+  MUB = "unban *";
+  UB = "unban";
+  IG = "ignore";
+  UNIG = "unignore";
+  SB = "scrollback";
+  UMODE = "mode $N";
+  WC = "window close";
+  WN = "window new hide";
+  SV = "say Irssi $J ($V) - http://irssi.org/";
+  GOTO = "sb goto";
+  CHAT = "dcc chat";
+  RUN = "SCRIPT LOAD";
+  CALC = "exec - if which bc &>/dev/null\\; then echo '$*' | bc | awk '{print \"$*=\"$$1}'\\; else echo bc was not found\\; fi";
+  SBAR = "STATUSBAR";
+  INVITELIST = "mode $C +I";
+  Q = "QUERY";
+  "MANUAL-WINDOWS" = "set use_status_window off;set autocreate_windows off;set autocreate_query_level none;set autoclose_windows off;set reuse_unused_windows on;save";
+  EXEMPTLIST = "mode $C +e";
+  ATAG = "WINDOW SERVER";
+  hideadd = "eval set activity_hide_targets $activity_hide_targets $-";
+  hideclear = "set -c activity_hide_targets";
+  "hidelevels.clear" = "set -c activity_hide_level";
+  "hidelevels.set" = "set activity_hide_level parts joins quits nicks modes";
+  hidelist = "set activity_hide_targets";
+  hideset = "set activity_hide_targets $-";
+};
+
+statusbar = {
+  # formats:
+  # when using {templates}, the template is shown only if it's argument isn't
+  # empty unless no argument is given. for example {sb} is printed always,
+  # but {sb $T} is printed only if $T isn't empty.
+
+  items = {
+    # start/end text in statusbars
+    barstart = "{sbstart}";
+    barend = "{sbend}";
+
+    topicbarstart = "{topicsbstart}";
+    topicbarend = "{topicsbend}";
+
+    # treated "normally", you could change the time/user name to whatever
+    time = "{sb $Z}";
+    user = "{sb {sbnickmode $cumode}$N{sbmode $usermode}{sbaway $A}}";
+
+    # treated specially .. window is printed with non-empty windows,
+    # window_empty is printed with empty windows
+    window = "{sb $winref:$tag/$itemname{sbmode $M}}";
+    window_empty = "{sb $winref{sbservertag $tag}}";
+    prompt = "{prompt $[.15]itemname}";
+    prompt_empty = "{prompt $winname}";
+    topic = " $topic";
+    topic_empty = " Irssi v$J - http://www.irssi.org";
+
+    # all of these treated specially, they're only displayed when needed
+    lag = "{sb Lag: $0-}";
+    act = "{sb Act: $0-}";
+    more = "-- more --";
+  };
+
+  # there's two type of statusbars. root statusbars are either at the top
+  # of the screen or at the bottom of the screen. window statusbars are at
+  # the top/bottom of each split window in screen.
+  default = {
+    # the "default statusbar" to be displayed at the bottom of the window.
+    # contains all the normal items.
+    window = {
+      disabled = "no";
+
+      # window, root
+      type = "window";
+      # top, bottom
+      placement = "bottom";
+      # number
+      position = "1";
+      # active, inactive, always
+      visible = "active";
+
+      # list of items in statusbar in the display order
+      items = {
+        barstart = { priority = "100"; };
+        time = { };
+        user = { };
+        window = { };
+        window_empty = { };
+        lag = { priority = "-1"; };
+        act = { priority = "10"; };
+        more = { priority = "-1"; alignment = "right"; };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+
+    # statusbar to use in inactive split windows
+    window_inact = {
+      type = "window";
+      placement = "bottom";
+      position = "1";
+      visible = "inactive";
+      items = {
+        barstart = { priority = "100"; };
+        window = { };
+        window_empty = { };
+        more = { priority = "-1"; alignment = "right"; };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+
+    # we treat input line as yet another statusbar :) It's possible to
+    # add other items before or after the input line item.
+    prompt = {
+      type = "root";
+      placement = "bottom";
+      # we want to be at the bottom always
+      position = "100";
+      visible = "always";
+      items = {
+        prompt = { priority = "-1"; };
+        prompt_empty = { priority = "-1"; };
+        # treated specially, this is the real input line.
+        input = { priority = "10"; };
+      };
+    };
+
+    # topicbar
+    topic = {
+      type = "root";
+      placement = "top";
+      position = "1";
+      visible = "always";
+      items = {
+        topicbarstart = { priority = "100"; };
+        topic = { };
+        topic_empty = { };
+        topicbarend = { priority = "100"; alignment = "right"; };
+      };
+    };
+  };
+};
+settings = {
+  core = {
+    real_name = "Simon Quantrill";
+    user_name = "squantrill";
+    nick = "simon_q";
+  };
+  "fe-text" = { actlist_sort = "refnum"; term_force_colors = "yes"; };
+  "fe-common/core" = { theme = "fear2"; };
+  "perl/core/scripts" = {
+    crapbuster_levels = "JOINS PARTS QUITS NICKS CLIENTCRAP CRAP MODE TOPICS KICKS";
+  };
+};
+hilights = ( { text = "nick"; nick = "yes"; word = "yes"; } );
+windows = {
+  1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
+  2 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#irssitest";
+        tag = "EFNet";
+      }
+    );
+  };
+  3 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#linuxjournal";
+        tag = "FreeNode";
+      }
+    );
+  };
+  4 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#debian";
+        tag = "FreeNode";
+      }
+    );
+  };
+  5 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "##security";
+        tag = "FreeNode";
+      }
+    );
+  };
+  6 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#agstaff";
+        tag = "ArgossNet";
+      }
+    );
+  };
+  7 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#carnique";
+        tag = "CNQnet";
+      }
+    );
+  };
+};
+mainwindows = { 1 = { first_line = "1"; lines = "48"; }; };
+
+
