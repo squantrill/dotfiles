@@ -186,3 +186,5 @@ alias clean_pycs='find . -name "*.pyc" -exec rm {} \;'
 complete -F _complete_hosts ssh
 complete -F _complete_hosts host
 alias sion='ssh -t root@sion.bmtargoss.org screen -x simons-stuff'
+
+set -o vi
