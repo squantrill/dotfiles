@@ -23,4 +23,5 @@ fi
 
 alias gt_ood='ssh -t quantrill@192.168.150.30 screen -arR'
 alias mt_ood='sshfs quantrill@192.168.150.30:/home/quantrill /Users/quantrill/ood_home'
-alias gt_quantrill='ssh -t simon@svn.quantrill.eu screen -arR'
+alias gt_quantrill='ssh -t simon@svn.quantrill.eu screen -rRa'
+alias gt_postfix='vim scp://root@192.168.130.226//etc/postfix/canonical'

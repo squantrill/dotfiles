@@ -19,6 +19,8 @@ Bundle 'gmarik/vundle'
 " VCS
 Bundle 'tpope/vim-fugitive'
 
+Bundle 'valloric/YouCompleteMe'
+
 " System
 Bundle 'vim-scripts/Gist.vim'
 Bundle 'majutsushi/tagbar'
