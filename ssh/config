@@ -1,0 +1,7 @@
+Host shell.xs4all.nl 
+Port 22 
+User quantri0 
+
+Host svn.quantrill.eu
+HostName svn.quantrill.eu
+Port 2222
