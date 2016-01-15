@@ -14,6 +14,7 @@ cd ~/dotfiles
 ./makesymlinks.sh
 
 cd ~/.vim/bundle/YouCompleteMe
+
 YCM_CORES=1 ./install.py --clang-completer
 
 
