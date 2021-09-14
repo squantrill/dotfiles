@@ -13,8 +13,13 @@ cd ~/dotfiles
 
 ./makesymlinks.sh
 
-cd ~/.vim/bundle/YouCompleteMe
+sudo apt-get install python-dev python3-dev
 
-YCM_CORES=1 ./install.py --clang-completer
+cd ~/.vim/bundle/YouCompleteMe/
+
+python3 install.py
+
+
+
 
 
