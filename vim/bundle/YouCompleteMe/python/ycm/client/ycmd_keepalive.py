@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-#
 # Copyright (C) 2013  Google Inc.
 #
 # This file is part of YouCompleteMe.
@@ -25,7 +23,7 @@ from ycm.client.base_request import BaseRequest
 # This class can be used to keep the ycmd server alive for the duration of the
 # life of the client. By default, ycmd shuts down if it doesn't see a request in
 # a while.
-class YcmdKeepalive( object ):
+class YcmdKeepalive:
   def __init__( self, ping_interval_seconds = 60 * 10 ):
     self._keepalive_thread = Thread( target = self._ThreadMain )
     self._keepalive_thread.daemon = True
@@ -40,9 +38,4 @@ class YcmdKeepalive( object ):
     while True:
       time.sleep( self._ping_interval_seconds )
 
-      # We don't care if there's an intermittent problem in contacting the
-      # server; it's fine to just skip this ping.
-      try:
-        BaseRequest.GetDataFromHandler( 'healthy' )
-      except:
-        pass
+      BaseRequest().GetDataFromHandler( 'healthy', display_message = False )

@@ -187,4 +187,7 @@ complete -F _complete_hosts ssh
 complete -F _complete_hosts host
 alias sion='ssh -t root@sion.bmtargoss.org screen -x simons-stuff'
 
+set enable-bracketed-paste off
 set -o vi
+
+eval "$(ssh-agent -s)"

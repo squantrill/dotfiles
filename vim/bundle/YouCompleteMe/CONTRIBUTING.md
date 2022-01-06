@@ -1,5 +1,7 @@
-Writing good issue reports
-==========================
+Writing issue reports
+=====================
+
+### Bugs and features only
 
 First things first: **the issue tracker is NOT for tech support**. It is for
 reporting bugs and requesting features. If your issue amounts to "I can't get
@@ -7,8 +9,16 @@ YCM to work on my machine" and the reason why is obviously related to your
 machine configuration and the problem would not be resolved with _reasonable_
 changes to the YCM codebase, then the issue is likely to be closed.
 
-**A good place to ask questions is the [ycm-users][] Google group**. Rule of
-thumb: if you're not sure whether your problem is a real bug, ask on the group.
+### Where to go for help
+
+**A good place to ask questions is the [Gitter room][gitter] or the
+[ycm-users][] Google group**. Rule of thumb: if you're not sure whether your
+problem is a real bug, ask on the room or the group. 
+
+Don't go to `#vim` on freenode for support. See the 
+[readme][help-advice-support] for further help.
+
+### Installation problem - read the docs
 
 **YCM compiles just fine**; [the build bots say so][build-bots]. If the bots are
 green and YCM doesn't compile on your machine, then _your machine is the root
@@ -24,15 +34,49 @@ This leads us to point #2: **make sure you have checked the docs before
 reporting an issue**. The docs are extensive and cover a ton of things; there's
 also an FAQ at the bottom that quite possibly addresses your problem.
 
+For installation problems, make sure that any issue report includes the entire
+output of any build or installation commands, including **the command used to
+run them**.
+
+For common issues such as "the ycmd server SHUT DOWN", please check the GitHub
+Wiki.
+
+### Other problems - check the issue tracker
+
 Further, **search the issue tracker for similar issues** before creating a new
 one. There's no point in duplication; if an existing issue addresses your
-problem, please comment there instead of creating a duplicate.
+problem, please comment there instead of creating a duplicate. However, if the
+issue you found is **closed as resolved** (e.g. with a PR or the original user's
+problem was resolved), raise a **new issue**, because you've found a new
+problem. Reference the original issue if you think that's useful information.
+
+Please note: Closed issues which have been inactive for 60 days will be locked,
+this helps to keep discussions focussed. If you believe you are still
+experiencing an issue which has been closed, please raise a new issue,
+completing the issue template.
+
+If you do find a similar _open_ issue, **don't just post 'me too' or similar**
+responses. This almost never helps resolve the issue, and just causes noise for
+the maintainers. Only post if it will aid the maintainers in solving the issue;
+if there are existing diagnostics requested in the thread, perform
+them and post the results.
+
+When replying, follow the instructions for getting the required diagnostics for
+posting a new issue (see below), and add them to your response. This is likely
+to help the maintainers find a fix for you, rather than have them spend time
+requesting them again. To be clear, the maintainers *always* need the
+diagnostics (debug info, log files, versions, etc.) even for responses on
+existing issues.
 
 You should also **search the archives of the [ycm-users][] mailing list**.
 
+### Check your YCM version
+
 Lastly, **make sure you are running the latest version of YCM**. The issue you
 have encountered may have already been fixed. **Don't forget to recompile
-ycm_core.so too** (usually by just running `install.sh` again).
+ycm_core.so too** (usually by just running `install.py` again).
+
+## Creating an issue 
 
 OK, so we've reached this far. You need to create an issue. First realize that
 the time it takes to fix your issue is a multiple of how long it takes the
@@ -41,29 +85,36 @@ fixed.
 
 Here are the things you should do when creating an issue:
 
-1. **Write a step-by-step procedure that when performed repeatedly reproduces
+1. Most importantly, **read and complete the issue template**. The maintainers
+   rely on the style and structure of the issue template to quickly resolve your
+   issue. If you don't complete it in full, then the maintainers may elect to
+   ignore or simply close your issue. This isn't personal, it's just that they
+   are busy too.
+2. **Check that your issue reproduces with a minimal configuration**. Run `vim
+   -Nu /path/to/YCM/vimrc_ycm_minimal` and reproduce this issue. If it doesn't
+   repro, then copy your ycm-specific settings into this file and try again. If
+   it still doesn't repro, the issue is likely with another plugin.
+3. **Write a step-by-step procedure that when performed repeatedly reproduces
    your issue.** If we can't reproduce the issue, then we can't fix it. It's
    that simple.
-2. Put the following options in your vimrc:
-
-   ```viml
-   let g:ycm_server_use_vim_stdout = 1
-   let g:ycm_server_log_level = 'debug'
-   ```
-
-   Then, if possible, start gvim/macvim (not console vim) from the console. 
-   As you use Vim, you'll see the `ycmd` debug output stream in the console. 
-   If you can not use gvim/macvim, run `:YcmDebugInfo` in vim to see what 
-   temporary files (listed under "Server logfiles") the debug output streams 
-   are written to. Attach the debug output stream to your issue.
-3. **Create a test case for your issue**. This is critical. Don't talk about how
+4. Explain **what you expected to happen**, and **what actually happened**.
+   This helps us understand if it is a bug, or just a misunderstanding of the
+   behavior.
+5. Add the output of [the `:YcmDebugInfo` command][ycm-debug-info-command]. Make
+   sure that when you run this, your cursor is in the file that is experiencing
+   the issue.
+6. Reproduce your issue using `vim -Nu /path/to/YCM/vimrc_ycm_minimal` 
+    and attach the contents of the logfiles. Use [the
+   `:YcmToggleLogs` command][ycm-toggle-logs-command] to directly open them in
+   Vim.
+7. **Create a test case for your issue**. This is critical. Don't talk about how
    "when I have X in my file" or similar, _create a file with X in it_ and put
    the contents inside code blocks in your issue description. Try to make this
    test file _as small as possible_. Don't just paste a huge, 500 line source
    file you were editing and present that as a test. _Minimize_ the file so that
    the problem is reproduced with the smallest possible amount of test data.
-4. **Include your OS and OS version.**
-5. **Include the output of `vim --version`.**
+8. **Include your OS and OS version.**
+9. **Include the output of `vim --version`.**
 
 
 Creating good pull requests
@@ -109,13 +160,10 @@ Creating good pull requests
     sometimes what you want can be done in a different way if the reason for the
     change is known. _What goal is your change trying to accomplish?_
 
-6.  **Sign the Google [Contributor License Agreement][cla]** (you can sign
-    online at the bottom of that page). You _must_ sign this form, otherwise we
-    cannot merge in your changes. **_Always_ mention in the pull request that
-    you've signed it**, even if you signed it for a previous pull request (you
-    only need to sign the CLA once).
 
-
-[build-bots]: https://travis-ci.org/Valloric/YouCompleteMe
+[build-bots]: https://dev.azure.com/YouCompleteMe/YCM/_build/latest?definitionId=1&branchName=master
 [ycm-users]: https://groups.google.com/forum/?hl=en#!forum/ycm-users
-[cla]: https://developers.google.com/open-source/cla/individual
+[gitter]: https://gitter.im/Valloric/YouCompleteMe
+[help-advice-support]: https://github.com/ycm-core/YouCompleteMe#help-advice-support
+[ycm-debug-info-command]: https://github.com/ycm-core/YouCompleteMe#the-ycmdebuginfo-command
+[ycm-toggle-logs-command]: https://github.com/ycm-core/YouCompleteMe#the-ycmtogglelogs-command

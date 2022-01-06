@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-#
 # Copyright (C) 2013  Google Inc.
 #
 # This file is part of YouCompleteMe.
@@ -35,4 +33,13 @@ class OmniCompletionRequest( CompletionRequest ):
 
 
   def Response( self ):
-    return self._results
+    return {
+      'line': self.request_data[ 'line_num' ],
+      'column': self.request_data[ 'column_num' ],
+      'completion_start_column': self.request_data[ 'start_column' ],
+      'completions': self._results
+    }
+
+
+  def OnCompleteDone( self ):
+    pass
