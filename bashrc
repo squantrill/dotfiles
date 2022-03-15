@@ -1,6 +1,8 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+eval "$(ssh-agent -s)"
+
 VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
 
 #osx color terminal
@@ -190,4 +192,8 @@ alias sion='ssh -t root@sion.bmtargoss.org screen -x simons-stuff'
 set enable-bracketed-paste off
 set -o vi
 
-eval "$(ssh-agent -s)"
+genpasswd() {
+	local l=$1
+       	[ "$l" == "" ] && l=20
+      	tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
+}
