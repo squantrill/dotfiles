@@ -39,11 +39,8 @@ Bundle 'jistr/vim-nerdtree-tabs'
 
 " Syntaxes
 Bundle 'leshill/vim-json'
-Bundle 'puppetlabs/puppet-syntax-vim'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'othree/html5.vim'
-Bundle 'itspriddle/vim-jquery'
-Bundle 'atourino/jinja.vim'
 
 " Python
 Bundle 'nvie/vim-flake8'
