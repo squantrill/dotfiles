@@ -170,7 +170,7 @@ export PS1="$PS1\$(parse_git_branch)\$(parse_svn_branch) "
 _complete_hosts () {
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
-    host_list=`{ 
+    host_list=`{
         for c in /etc/ssh_config /etc/ssh/ssh_config ~/.ssh/config
         do [ -r $c ] && sed -n -e 's/^Host[[:space:]]//p' -e 's/^[[:space:]]*HostName[[:space:]]//p' $c
         done
@@ -197,3 +197,19 @@ genpasswd() {
        	[ "$l" == "" ] && l=20
       	tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
 }
+svngrep() { grep  --color=always --exclude-dir=".svn" -r "$1" . | less -R; }
+function whost() {
+	grep $1 ~/workspace/ansible-for-servers/hosts | sed -e 's/ansible_*host=//g' | uniq
+}
+export -f whost
+
+
+PATH="/home/simon/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/simon/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/simon/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/simon/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/simon/perl5"; export PERL_MM_OPT;
+
+if [ "$HOSTNAME" == "DESKTOP-P47R8S7" ]; then
+/usr/bin/remind -f ~/.reminders
+fi
